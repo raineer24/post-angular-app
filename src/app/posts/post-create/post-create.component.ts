@@ -1,5 +1,4 @@
 import  { Component, OnInit, } from '@angular/core';
-import { Post } from '../post.model';
 import { NgForm } from '@angular/forms';
 import { PostsService } from '../post.service';
 
@@ -21,6 +20,7 @@ export class PostCreateComponent implements OnInit {
             return;
         }
        this.postsService.addPost(form.value.title, form.value.content);
+       form.resetForm();
     }
 
     ngOnInit() { }

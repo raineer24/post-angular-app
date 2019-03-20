@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Post } from '../post.model';
 import { PostsService } from '../post.service';
+import { Subscription } from 'rxjs';
 @Component({
     selector: 'app-post-list',
     templateUrl: 'post-list.component.html',
@@ -14,6 +15,7 @@ export class PostListComponent implements OnInit {
     //     { title: 'Third Post', content: 'You can\t use this with a descendant selector expression to select only instances of the custom element that are inside a particular ancestor'},
     // ]
    posts: Post[] = [];
+   private postSub: Subscription;
    
 
     constructor( public postsService:PostsService) { 
@@ -22,7 +24,7 @@ export class PostListComponent implements OnInit {
 
     ngOnInit() { 
         this.posts = this.postsService.getPosts();
-        this.postsService.getPostUpdateListener()
+        this.postSub =this.postsService.getPostUpdateListener()
             .subscribe((posts: Post[]) => {
                 this.posts = posts;
             });

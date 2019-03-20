@@ -13,7 +13,7 @@ export class PostCreateComponent implements OnInit {
     onAddPost(postInput: HTMLTextAreaElement){
         console.log(postInput);
         console.dir(postInput);
-        this.newPost = 'The user\'s post';
+        this.newPost = postInput.value
     }
 
     ngOnInit() { }

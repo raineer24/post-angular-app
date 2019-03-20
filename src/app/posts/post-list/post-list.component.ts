@@ -13,8 +13,8 @@ export class PostListComponent implements OnInit {
     //     { title: 'Second Post', content: 'and then include the relevant class selector as the function argument'},
     //     { title: 'Third Post', content: 'You can\t use this with a descendant selector expression to select only instances of the custom element that are inside a particular ancestor'},
     // ]
-    @Input() posts: Post[] = [];
-    p
+   posts: Post[] = [];
+   
 
     constructor( public postsService:PostsService) { 
        

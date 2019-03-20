@@ -8,7 +8,7 @@ export class PostsService {
 
 
     getPosts() {
-        return [...this.posts];
+        return this.posts;
     }
 
     addPost(title: string, content: string) {

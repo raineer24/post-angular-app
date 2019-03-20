@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { Post } from '../post.model';
 @Component({
     selector: 'app-post-list',
     templateUrl: 'post-list.component.html',
@@ -12,7 +12,7 @@ export class PostListComponent implements OnInit {
     //     { title: 'Second Post', content: 'and then include the relevant class selector as the function argument'},
     //     { title: 'Third Post', content: 'You can\t use this with a descendant selector expression to select only instances of the custom element that are inside a particular ancestor'},
     // ]
-    @Input() posts = [];
+    @Input() posts: Post[] = [];
 
     constructor() { }
 

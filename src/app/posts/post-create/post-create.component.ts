@@ -9,6 +9,7 @@ import  { Component, OnInit, EventEmitter } from '@angular/core';
 export class PostCreateComponent implements OnInit {
     enteredTitle = '';
     enteredContent = ''; 
+    postCreated = new EventEmitter();
     
     constructor() { }
 

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Post } from '../post.model';
+import { PostsService } from '../post.service';
+import { Subscription } from 'rxjs';
 @Component({
     selector: 'app-post-list',
     templateUrl: 'post-list.component.html',
@@ -12,9 +14,19 @@ export class PostListComponent implements OnInit {
     //     { title: 'Second Post', content: 'and then include the relevant class selector as the function argument'},
     //     { title: 'Third Post', content: 'You can\t use this with a descendant selector expression to select only instances of the custom element that are inside a particular ancestor'},
     // ]
-    @Input() posts: Post[] = [];
+   posts: Post[] = [];
+   private postSub: Subscription;
+   
 
-    constructor() { }
+    constructor( public postsService:PostsService) { 
+       
+    }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.posts = this.postsService.getPosts();
+        this.postSub =this.postsService.getPostUpdateListener()
+            .subscribe((posts: Post[]) => {
+                this.posts = posts;
+            });
+    }
 }

@@ -1,13 +1,20 @@
-<mat-accordion multi="true" *ngIf="posts.length > 0">
-    <mat-expansion-panel *ngFor="let post of posts">
-        <mat-expansion-panel-header>
-           {{post.title}}
-        </mat-expansion-panel-header>
-        <p>{{post.content}}</p>
-        <mat-action-row>
-            <button mat-button color="primary">EDIT</button>
-            <button mat-button color="warn">DELETE</button>
-          </mat-action-row>
-    </mat-expansion-panel>
-</mat-accordion>  
-<p class="text-align mat-body-1" *ngIf="posts.length <= 0">No Posts added yet!</p>
+<mat-accordion multi="true" *ngIf="contents.length > 0">
+  <mat-expansion-panel *ngFor="let content of contents">
+    <mat-expansion-panel-header>
+      {{ content.title }}
+    </mat-expansion-panel-header>
+    <p>{{ content.content }}</p>
+    <mat-action-row>
+      <button mat-button color="primary">EDIT</button>
+      <button mat-button color="warn">DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="text-align mat-body-1" *ngIf="contents.length <= 0">
+  No Posts added yet!
+</p>
+<!-- <ul>
+  <li *ngFor="let content of contents">
+    <p>{{ content.title }} • {{ content.title }}</p>
+  </li>
+</ul> -->

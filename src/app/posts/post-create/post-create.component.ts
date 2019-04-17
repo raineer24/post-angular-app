@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { PostsService } from "../post.service";
 import { Subscription, Subject, Observable } from "rxjs";
-import { Content, ContentAdapter } from "../post.model";
+import { Content } from "../post.model";
 
 @Component({
   selector: "app-post-create",
@@ -14,9 +14,17 @@ export class PostCreateComponent implements OnInit {
   enteredContent = "";
   postForm: FormGroup;
   postSubs: Subscription;
-  private posts: Content[] = [];
+  private posts: Content[];
   private postsUpdated = new Subject<Content[]>();
   constructor(public postsService: PostsService, private fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.initForm();
+    // this.postsService.refreshNeed$.subscribe(() => {
+    //   this.getAllContent();
+    // });
+    // this.getAllContent();
+  }
 
   initForm() {
     this.postForm = this.fb.group({
@@ -26,42 +34,30 @@ export class PostCreateComponent implements OnInit {
         Validators.compose([Validators.required, Validators.minLength(6)])
       ]
     });
+    this.postsService.getPosts();
   }
+
+  // private getAllContent() {
+  //   this.postsService
+  //     .getPosts()
+  //     .subscribe((posts: Content[]) => (this.posts = posts));
+  // }
 
   onSubmit() {
-    const values = this.postForm.value;
+    //const values = this.postForm.value;
 
-    if (this.postForm.valid) {
-      const data = {
-        title: values.title,
-        content: values.content
-      };
-      this.postSubs = this.postsService.addPost(data).subscribe(data => {
-        //  const error = data.error;
-        console.log(data);
-        this.posts.push(data);
-        this.postsUpdated.next([...this.posts]);
-        console.log(...this.posts);
-      });
-    }
-  }
+    // if (this.postForm.valid) {
+    //   const data = {
+    //     title: values.title,
+    //     content: values.content
+    //   };
+    //   this.postSubs = this.postsService.addPost(data).subscribe(data => {
+    //     console.log(data);
+    //   });
+    // }
 
-  // private postsUpdated = new Subject<Post[]>();
-
-  // getPosts() {
-  //     return [...this.posts];
-  // }
-  // getPostUpdateListener() {
-  //     return this.postsUpdated.asObservable();
-  // }
-
-  // addPost(title: string, content: string) {
-  //     const post: Post = { title: title, content: content };
-  //     this.posts.push(post);
-  //     this.postsUpdated.next([...this.posts]);
-  // }
-
-  ngOnInit() {
-    this.initForm();
+    this.postsService.addPost(this.postForm.value).subscribe(posts => {
+      console.log(`SAVED SUCCESSFULLY. ${JSON.stringify(posts)}`);
+    });
   }
 }

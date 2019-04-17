@@ -8,7 +8,7 @@ import { Subscription } from "rxjs";
   styleUrls: ["./post-list.component.css"]
 })
 export class PostListComponent implements OnInit {
-  contents: Content[];
+  contents: Content[] = [];
 
   constructor(public postsService: PostsService) {}
 

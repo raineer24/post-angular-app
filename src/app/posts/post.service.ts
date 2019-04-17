@@ -44,4 +44,15 @@ export class PostsService {
       })
     );
   }
+
+  removeContent(id: number) {
+    const url = `${this.baseUrl}/api/v1/content/${id}`;
+    console.log(url);
+
+    return this.http.delete(url).pipe(
+      tap(() => {
+        this._refreshNeeded$.next();
+      })
+    );
+  }
 }

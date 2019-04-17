@@ -26,6 +26,13 @@ export class PostCreateComponent implements OnInit {
     // this.getAllContent();
   }
 
+  get title() {
+    return this.postForm.get("title");
+  }
+  get content() {
+    return this.postForm.get("content");
+  }
+
   initForm() {
     this.postForm = this.fb.group({
       title: ["", Validators.compose([Validators.required])],
@@ -58,6 +65,7 @@ export class PostCreateComponent implements OnInit {
 
     this.postsService.addPost(this.postForm.value).subscribe(posts => {
       console.log(`SAVED SUCCESSFULLY. ${JSON.stringify(posts)}`);
+      this.postForm.reset();
     });
   }
 }

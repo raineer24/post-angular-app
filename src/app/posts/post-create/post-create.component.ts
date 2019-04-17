@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { PostsService } from "../post.service";
-import { Subscription } from "rxjs";
+import { Subscription, Subject, Observable } from "rxjs";
+import { Content, ContentAdapter } from "../post.model";
 
 @Component({
   selector: "app-post-create",
@@ -13,7 +14,8 @@ export class PostCreateComponent implements OnInit {
   enteredContent = "";
   postForm: FormGroup;
   postSubs: Subscription;
-
+  private posts: Content[] = [];
+  private postsUpdated = new Subject<Content[]>();
   constructor(public postsService: PostsService, private fb: FormBuilder) {}
 
   initForm() {
@@ -37,17 +39,26 @@ export class PostCreateComponent implements OnInit {
       this.postSubs = this.postsService.addPost(data).subscribe(data => {
         //  const error = data.error;
         console.log(data);
-        //  if (error)
+        this.posts.push(data);
+        this.postsUpdated.next([...this.posts]);
+        console.log(...this.posts);
       });
     }
   }
 
-  // onAddPost(form: NgForm) {
-  //   if (form.invalid) {
-  //     return;
-  //   }
-  //   this.postsService.addPost(form.value.title);
-  //   form.resetForm();
+  // private postsUpdated = new Subject<Post[]>();
+
+  // getPosts() {
+  //     return [...this.posts];
+  // }
+  // getPostUpdateListener() {
+  //     return this.postsUpdated.asObservable();
+  // }
+
+  // addPost(title: string, content: string) {
+  //     const post: Post = { title: title, content: content };
+  //     this.posts.push(post);
+  //     this.postsUpdated.next([...this.posts]);
   // }
 
   ngOnInit() {

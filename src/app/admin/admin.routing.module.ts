@@ -1,13 +1,14 @@
 import { NgModule } from "@angular/core";
-import { Routes, RouterModule, ProductComponent } from "@angular/router";
+import { Routes, RouterModule } from "@angular/router";
 
-import { AdminComponent } from "./pages";
+import { ProductsComponent, AdminComponent } from "./pages";
 
 const routes: Routes = [
   {
     path: "admin",
     component: AdminComponent,
-    children: [{ path: "product", component: ProductComponent }]
+    pathMatch: "prefix",
+    children: [{ path: "products", component: ProductsComponent }]
   }
 ];
 

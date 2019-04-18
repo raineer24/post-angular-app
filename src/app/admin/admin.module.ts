@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
+import { ProductsComponent, AdminComponent } from "./pages";
 import { AdminRoutingModule } from "./admin.routing.module";
-import { AdminComponent, ProductComponent } from "./pages";
 
 @NgModule({
-  declarations: [AdminComponent, ProductComponent],
+  declarations: [ProductsComponent, AdminComponent],
   imports: [AdminRoutingModule],
   providers: []
 })

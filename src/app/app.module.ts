@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AdminModule } from "./admin/admin.module";
 
 import {
   MatInputModule,
@@ -36,7 +37,8 @@ import { HttpClientModule } from "@angular/common/http";
     MatToolbarModule,
     MatExpansionModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

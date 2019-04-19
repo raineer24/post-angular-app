@@ -37,17 +37,17 @@ export class PostListComponent implements OnInit {
     this.editContent = content;
     console.log("tae");
   }
-  updateContent() {
-    if (this.editContent) {
-      this.postsService.updateContent(this.editContent).subscribe(content => {
-        const ix = content
-          ? this.contents.findIndex(c => c.id === content.id)
-          : -1;
-        if (ix > -1) {
-          this.contents[ix] = content;
-        }
-      });
-      this.editContent = undefined;
-    }
-  }
+  // updateContent() {
+  //   if (this.editContent) {
+  //     this.postsService.updateContent(this.editContent).subscribe(content => {
+  //       const ix = content
+  //         ? this.contents.findIndex(c => c.id === content.id)
+  //         : -1;
+  //       if (ix > -1) {
+  //         this.contents[ix] = content;
+  //       }
+  //     });
+  //     this.editContent = undefined;
+  //   }
+  // }
 }

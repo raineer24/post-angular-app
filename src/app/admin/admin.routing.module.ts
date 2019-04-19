@@ -9,6 +9,11 @@ const routes: Routes = [
     component: AdminComponent,
     pathMatch: "prefix",
     children: [{ path: "products", component: ProductsComponent }]
+  },
+  {
+    path: "",
+    redirectTo: "admin/products",
+    pathMatch: "full"
   }
 ];
 

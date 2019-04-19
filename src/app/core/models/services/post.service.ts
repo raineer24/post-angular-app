@@ -60,7 +60,19 @@ export class PostsService {
     const url = `${this.baseUrl}/api/v1/content/${id}`;
     return this.http.put<Content>(url, content).pipe(
       tap(() => {
+        console.log(`fetched product id=${id}`);
+
         this._refreshNeeded$.next();
+      })
+    );
+  }
+  getPostId(id: number) {
+    const url = `${this.baseUrl}/api/v1/content/${id}`;
+
+    return this.http.get<Content>(url).pipe(
+      tap(() => {
+        this._refreshNeeded$.next();
+        console.log(`fetched product id=${id}`);
       })
     );
   }

@@ -1,4 +1,17 @@
+<div class="button-row">
+  <a mat-flat-button color="primarty" [routerLink]="['/admin/products']"
+    ><mat-icon>list</mat-icon></a
+  >
+</div>
 <mat-card-header>
   <mat-card-title>{{ content.title }}</mat-card-title>
   <mat-card-subtitle>{{ content.content }}</mat-card-subtitle>
 </mat-card-header>
+<mat-card-content>
+  <dl>
+    <dt>Title</dt>
+    <dd>{{ content.title }}</dd>
+    <dt>Description</dt>
+    <dd>{{ content.content }}</dd>
+  </dl>
+</mat-card-content>

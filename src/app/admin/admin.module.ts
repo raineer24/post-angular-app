@@ -4,7 +4,8 @@ import { AdminRoutingModule } from "./admin.routing.module";
 import {
   MatTableModule,
   MatButtonModule,
-  MatCardModule
+  MatCardModule,
+  MatIconModule
 } from "@angular/material";
 import { ProductAddComponent } from "./pages/product/product-add/product-add.component";
 import { ProductDetailComponent } from "./pages/product/product-detail/product-detail.component";
@@ -16,7 +17,13 @@ import { ProductDetailComponent } from "./pages/product/product-detail/product-d
     ProductAddComponent,
     ProductDetailComponent
   ],
-  imports: [AdminRoutingModule, MatTableModule, MatButtonModule, MatCardModule],
+  imports: [
+    AdminRoutingModule,
+    MatTableModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule
+  ],
   providers: []
 })
 export class AdminModule {}

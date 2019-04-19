@@ -9,6 +9,7 @@ import { Subscription } from "rxjs";
 })
 export class PostListComponent implements OnInit {
   contents: Content[] = [];
+  editContent: Content;
 
   constructor(public postsService: PostsService) {}
 
@@ -30,5 +31,23 @@ export class PostListComponent implements OnInit {
     this.postsService
       .removeContent(id)
       .subscribe(() => console.log(`${id} deleted`), error => alert(error));
+  }
+
+  edit(content) {
+    this.editContent = content;
+    console.log("tae");
+  }
+  updateContent() {
+    if (this.editContent) {
+      this.postsService.updateContent(this.editContent).subscribe(content => {
+        const ix = content
+          ? this.contents.findIndex(c => c.id === content.id)
+          : -1;
+        if (ix > -1) {
+          this.contents[ix] = content;
+        }
+      });
+      this.editContent = undefined;
+    }
   }
 }

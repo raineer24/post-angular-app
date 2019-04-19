@@ -1,11 +1,17 @@
 <mat-accordion multi="true" *ngIf="contents.length > 0">
   <mat-expansion-panel *ngFor="let content of contents">
     <mat-expansion-panel-header>
-      {{ content.title }}
+      <span *ngIf="content !== editContent">{{ content.title }}</span>
+      <input
+        *ngIf="content === editContent"
+        [(ngModel)]="content.title"
+        (blur)="updateContent()"
+        (keyup.enter)="updateContent()"
+      />
     </mat-expansion-panel-header>
     <p>{{ content.content }}</p>
     <mat-action-row>
-      <button mat-button color="primary">EDIT</button>
+      <button mat-button color="primary" (click)="edit(content)">EDIT</button>
       <button mat-button color="warn" (click)="removePost(content.id)">
         DELETE
       </button>

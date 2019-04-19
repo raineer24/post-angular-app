@@ -55,4 +55,13 @@ export class PostsService {
       })
     );
   }
+
+  updateContent(id: number, content: Content): Observable<Content> {
+    const url = `${this.baseUrl}/api/v1/content/${id}`;
+    return this.http.put<Content>(url, content).pipe(
+      tap(() => {
+        this._refreshNeeded$.next();
+      })
+    );
+  }
 }

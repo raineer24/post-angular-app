@@ -1,10 +1,26 @@
 import { Component, OnInit, Input } from "@angular/core";
-
+import { PostsService } from "../../../core/models/services/post.service";
+import { Content } from "../../../core/models/content";
 @Component({
   selector: "app-products",
   templateUrl: "products.component.html",
   styleUrls: ["./products.component.css"]
 })
 export class ProductsComponent implements OnInit {
-  ngOnInit() {}
+  displayedColumns: string[] = ["title", "content"];
+  data: Content[] = [];
+
+  constructor(public postsService: PostsService) {}
+
+  ngOnInit() {
+    this.postsService.getPosts().subscribe(
+      res => {
+        this.data = res;
+        console.log(this.data);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 }

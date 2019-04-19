@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { ProductsComponent, AdminComponent } from "./pages";
 import { ProductAddComponent } from "./pages/product/product-add/product-add.component";
-
+import { ProductDetailComponent } from "./pages/product/product-detail/product-detail.component";
 const routes: Routes = [
   {
     path: "admin",
@@ -11,7 +11,8 @@ const routes: Routes = [
     pathMatch: "prefix",
     children: [
       { path: "products", component: ProductsComponent },
-      { path: "add-product", component: ProductAddComponent }
+      { path: "product-add", component: ProductAddComponent },
+      { path: "product-detail", component: ProductDetailComponent }
     ]
   }
   // {

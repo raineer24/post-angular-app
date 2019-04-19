@@ -1,4 +1,4 @@
-import { Content } from "./post.model";
+import { Content } from "../content";
 import { Injectable } from "@angular/core";
 import { Subject, Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";

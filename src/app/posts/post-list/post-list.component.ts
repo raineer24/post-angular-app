@@ -25,4 +25,10 @@ export class PostListComponent implements OnInit {
       .getPosts()
       .subscribe((posts: Content[]) => (this.contents = posts));
   }
+
+  private removePost(id: number) {
+    this.postsService
+      .removeContent(id)
+      .subscribe(() => console.log(`${id} deleted`), error => alert(error));
+  }
 }

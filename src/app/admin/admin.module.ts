@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { ProductsComponent, AdminComponent } from "./pages";
 import { AdminRoutingModule } from "./admin.routing.module";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   MatTableModule,
   MatButtonModule,
@@ -24,7 +25,9 @@ import { ProductEditComponent } from "./pages/product/product-edit/product-edit.
     MatTableModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: []
 })

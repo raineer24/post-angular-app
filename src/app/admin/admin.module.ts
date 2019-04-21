@@ -8,7 +8,8 @@ import {
   MatButtonModule,
   MatCardModule,
   MatIconModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatInputModule
 } from "@angular/material";
 import { ProductAddComponent } from "./pages/product/product-add/product-add.component";
 import { ProductDetailComponent } from "./pages/product/product-detail/product-detail.component";
@@ -31,7 +32,8 @@ import { ProductEditComponent } from "./pages/product/product-edit/product-edit.
     ReactiveFormsModule,
     FormsModule,
     MatProgressSpinnerModule,
-    BrowserModule
+    BrowserModule,
+    MatInputModule
   ],
   providers: []
 })

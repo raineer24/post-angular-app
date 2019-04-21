@@ -57,11 +57,11 @@ export class PostsService {
     );
   }
 
-  updateContent(id: number, content: Content): Observable<Content> {
+  updateContent(id, content): Observable<any> {
     const url = `${this.baseUrl}/api/v1/content/${id}`;
-    return this.http.put<Content>(url, content).pipe(
+    return this.http.put(url, content).pipe(
       tap(() => {
-        console.log(`fetched product id=${id}`);
+        console.log(`updated content id=${id}`);
 
         this._refreshNeeded$.next();
       })

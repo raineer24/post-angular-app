@@ -52,6 +52,7 @@ export class PostsService {
     return this.http.delete(url).pipe(
       tap(() => {
         this._refreshNeeded$.next();
+        console.log(`deleted Product id=${id}`);
       })
     );
   }

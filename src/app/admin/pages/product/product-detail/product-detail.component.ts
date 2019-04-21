@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class ProductDetailComponent implements OnInit {
   content: Content = { id: "", title: "", content: "" };
+  isLoadingResults = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,7 +26,7 @@ export class ProductDetailComponent implements OnInit {
   getContentDetail(id) {
     this.postsService.getPostId(id).subscribe(data => {
       this.content = data;
-      console.log(this.content);
+      this.isLoadingResults = false;
     });
   }
 }

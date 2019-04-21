@@ -29,4 +29,16 @@ export class ProductDetailComponent implements OnInit {
       this.isLoadingResults = false;
     });
   }
+
+  deleteContent(id) {
+    this.postsService.removeContent(id).subscribe(
+      res => {
+        console.log(res);
+        this.router.navigate(["/admin/products"]);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 }

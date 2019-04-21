@@ -64,6 +64,8 @@ export class ProductAddComponent implements OnInit {
 
     this.postsService.addPost(this.contentForm.value).subscribe(posts => {
       console.log(`SAVED SUCCESSFULLY. ${JSON.stringify(posts)}`);
+      let id = posts["id"];
+      this.router.navigate(["/admin/product-detail", id]);
       //this.postForm.reset();
     });
   }

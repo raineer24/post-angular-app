@@ -61,7 +61,7 @@ export class ProductEditComponent implements OnInit {
     this.postsService.updateContent(this.id, form).subscribe(
       res => {
         let id = res["id"];
-        console.log(id);
+        //console.log(id);
 
         this.router.navigate(["/admin/product-details", id]);
       },

@@ -30,6 +30,7 @@ export class ProductEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.getContent(this.route.snapshot.params["id"]);
     this.initForm();
   }
 
@@ -61,9 +62,7 @@ export class ProductEditComponent implements OnInit {
     this.postsService.updateContent(this.id, form).subscribe(
       res => {
         let id = res["id"];
-        //console.log(id);
-
-        this.router.navigate(["/admin/product-details", id]);
+        this.router.navigate(["/admin/product-detail", id]);
       },
       err => {
         console.log(err);

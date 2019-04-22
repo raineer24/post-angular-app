@@ -19,8 +19,8 @@ import { Content } from "../../../../core/models/content";
 export class ProductEditComponent implements OnInit {
   contentForm: FormGroup;
   id: string = "";
-  // title: string = "";
-  //content: string = "";
+  title: string = "";
+  content: string = "";
 
   constructor(
     private router: Router,
@@ -43,6 +43,13 @@ export class ProductEditComponent implements OnInit {
     });
   }
 
+  // get title() {
+  //   return this.contentForm.get("title");
+  // }
+  // get content() {
+  //   return this.contentForm.get("content");
+  // }
+
   initForm() {
     this.contentForm = this.fb.group({
       title: [null, Validators.required],
@@ -54,6 +61,8 @@ export class ProductEditComponent implements OnInit {
     this.postsService.updateContent(this.id, form).subscribe(
       res => {
         let id = res["id"];
+        console.log(id);
+
         this.router.navigate(["/admin/product-details", id]);
       },
       err => {

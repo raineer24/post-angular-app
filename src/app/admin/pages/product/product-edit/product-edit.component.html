@@ -2,5 +2,46 @@
   <a><mat-icon>info</mat-icon></a>
 </div>
 <div class="example-card">
-  <form></form>
+  <form [formGroup]="contentForm" (ngSubmit)="onSubmit(contentForm.value)">
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        placeholder="Title"
+        formControlName="title"
+        class="form-control"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error>
+        <span
+          *ngIf="
+            !contentForm.get('title').valid && contentForm.get('title').touched
+          "
+          >Please enter Title</span
+        >
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        placeholder="content"
+        formControlName="content"
+        class="form-control"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error>
+        <span
+          *ngIf="
+            !contentForm.get('content').valid &&
+            contentForm.get('content').touched
+          "
+          >Please enter content</span
+        >
+      </mat-error>
+    </mat-form-field>
+    <div class="button-row">
+      <button>
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
+  </form>
 </div>

@@ -1,9 +1,9 @@
 import { Content } from "../content";
 import { Injectable } from "@angular/core";
-import { Subject, Observable } from "rxjs";
+import { Subject, Observable, of } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../../../environments/environment";
-import { map, tap } from "rxjs/operators";
+import { map, tap, catchError } from "rxjs/operators";
 
 @Injectable({ providedIn: "root" })
 export class PostsService {
@@ -25,7 +25,7 @@ export class PostsService {
   }
 
   getPosts(): Observable<Content[]> {
-    const url = `${this.baseUrl}/api/v1/content`;
+    const url = `${this.baseUrl}`;
     console.log(url);
     return this.http.get<Content[]>(url);
   }
@@ -37,7 +37,7 @@ export class PostsService {
     // const post: Content = data;
     // this.posts.push(post);
     // this.postsUpdated.next([...this.posts]);
-    const url = `${this.baseUrl}/api/v1/content`;
+    const url = `${this.baseUrl}`;
     return this.http.post<Content>(url, content).pipe(
       tap(() => {
         this._refreshNeeded$.next();
@@ -46,28 +46,29 @@ export class PostsService {
   }
 
   removeContent(id: number) {
-    const url = `${this.baseUrl}/api/v1/content/${id}`;
+    const url = `${this.baseUrl}/${id}`;
     console.log(url);
 
     return this.http.delete(url).pipe(
       tap(() => {
         this._refreshNeeded$.next();
+        console.log(`deleted Product id=${id}`);
       })
     );
   }
 
-  updateContent(id: number, content: Content): Observable<Content> {
-    const url = `${this.baseUrl}/api/v1/content/${id}`;
-    return this.http.put<Content>(url, content).pipe(
-      tap(() => {
-        console.log(`fetched product id=${id}`);
+  updateContent(id, content): Observable<any> {
+    const url = `${this.baseUrl}${id}`;
+    console.log(url);
 
-        this._refreshNeeded$.next();
-      })
+    return this.http.put(url, content).pipe(
+      tap(_ => console.log(`updated content id =${id}`)),
+      catchError(this.handleError<any>("updateContent"))
     );
   }
+
   getPostId(id: number) {
-    const url = `${this.baseUrl}/api/v1/content/${id}`;
+    const url = `${this.baseUrl}${id}`;
 
     return this.http.get<Content>(url).pipe(
       tap(() => {
@@ -75,5 +76,15 @@ export class PostsService {
         console.log(`fetched product id=${id}`);
       })
     );
+  }
+
+  private handleError<T>(operation = "operation", result?: T) {
+    return (error: any): Observable<T> => {
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 }

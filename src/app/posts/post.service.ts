@@ -25,7 +25,7 @@ export class PostsService {
   }
 
   getPosts(): Observable<Content[]> {
-    const url = `${this.baseUrl}/api/v1/content`;
+    const url = `${this.baseUrl}`;
     console.log(url);
     return this.http.get<Content[]>(url);
   }
@@ -37,7 +37,7 @@ export class PostsService {
     // const post: Content = data;
     // this.posts.push(post);
     // this.postsUpdated.next([...this.posts]);
-    const url = `${this.baseUrl}/api/v1/content`;
+    const url = `${this.baseUrl}`;
     return this.http.post<Content>(url, content).pipe(
       tap(() => {
         this._refreshNeeded$.next();
@@ -46,7 +46,7 @@ export class PostsService {
   }
 
   removeContent(id: number) {
-    const url = `${this.baseUrl}/api/v1/content/${id}`;
+    const url = `${this.baseUrl}/${id}`;
     console.log(url);
 
     return this.http.delete(url).pipe(
@@ -57,7 +57,7 @@ export class PostsService {
   }
 
   updateContent(id: number, content: Content): Observable<Content> {
-    const url = `${this.baseUrl}/api/v1/content/${id}`;
+    const url = `${this.baseUrl}`;
     return this.http.put<Content>(url, content).pipe(
       tap(() => {
         this._refreshNeeded$.next();

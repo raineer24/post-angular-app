@@ -9,7 +9,7 @@ import { Content } from "../../../core/models/content";
 export class ProductsComponent implements OnInit {
   displayedColumns: string[] = ["title", "content"];
   data: Content[] = [];
-
+  isLoadingResults = true;
   constructor(public postsService: PostsService) {}
 
   ngOnInit() {
@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit {
       res => {
         this.data = res;
         console.log(this.data);
+        this.isLoadingResults = false;
       },
       err => {
         console.log(err);

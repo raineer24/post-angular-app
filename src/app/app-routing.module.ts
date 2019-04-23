@@ -7,11 +7,16 @@ const routes: Routes = [
     path: "",
     loadChildren: "./admin/admin.module#AdminModule"
   }
+  // {
+  //   path: "admin",
+  //   redirectTo: "/admin",
+  //   pathMatch: "full"
+  // }
   //{ path: "admin", loadChildren: "./admin/admin.module#AdminModule" }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

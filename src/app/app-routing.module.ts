@@ -5,8 +5,9 @@ import { PostListComponent } from "./posts/post-list/post-list.component";
 const routes: Routes = [
   {
     path: "",
-    component: PostListComponent
+    loadChildren: "./admin/admin.module#AdminModule"
   }
+  //{ path: "admin", loadChildren: "./admin/admin.module#AdminModule" }
 ];
 
 @NgModule({

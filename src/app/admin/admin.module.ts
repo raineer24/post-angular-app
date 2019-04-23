@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { ProductsComponent, AdminComponent } from "./pages";
 import { AdminRoutingModule } from "./admin.routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { BrowserModule } from "@angular/platform-browser";
 import {
   MatTableModule,
   MatButtonModule,
@@ -15,6 +14,7 @@ import {
 import { ProductAddComponent } from "./pages/product/product-add/product-add.component";
 import { ProductDetailComponent } from "./pages/product/product-detail/product-detail.component";
 import { ProductEditComponent } from "./pages/product/product-edit/product-edit.component";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -33,9 +33,9 @@ import { ProductEditComponent } from "./pages/product/product-edit/product-edit.
     ReactiveFormsModule,
     FormsModule,
     MatProgressSpinnerModule,
-    BrowserModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    CommonModule
   ],
   providers: []
 })

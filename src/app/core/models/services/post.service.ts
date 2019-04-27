@@ -24,10 +24,14 @@ export class PostsService {
     return this._refreshNeeded$;
   }
 
-  getPosts(): Observable<Content[]> {
+  getPosts(): Observable<any> {
     const url = `${this.baseUrl}`;
     console.log(url);
-    return this.http.get<Content[]>(url);
+    return this.http.get(url).pipe(
+      map(response => {
+        return response["blogs"];
+      })
+    );
   }
   // getPostUpdateListener() {
   //   return this.postsUpdated.asObservable();

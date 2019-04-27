@@ -1,24 +1,25 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { AdminModule } from "./admin/admin.module";
+//import { AdminModule } from "./admin/admin.module";
 
 import {
   MatInputModule,
   MatCardModule,
   MatButtonModule,
   MatToolbarModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatProgressSpinnerModule
 } from "@angular/material";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { PostCreateComponent } from "./posts/post-create/post-create.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+//import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HeaderComponent } from "./header/header.component";
 import { PostListComponent } from "./posts/post-list/post-list.component";
 import { HttpClientModule } from "@angular/common/http";
-
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,6 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,
@@ -38,7 +38,9 @@ import { HttpClientModule } from "@angular/common/http";
     MatExpansionModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AdminModule
+    // AdminModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

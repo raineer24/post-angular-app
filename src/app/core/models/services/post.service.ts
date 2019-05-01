@@ -66,7 +66,13 @@ export class PostsService {
     console.log(url);
 
     return this.http.put(url, content).pipe(
-      tap(_ => console.log(`updated content id =${id}`)),
+      // tap(_ => console.log(`updated content id =${id}`)),
+      map(response => {
+        console.log(`fetched product id=${id}`);
+        console.log(response["content"]);
+
+        return response["content"];
+      }),
       catchError(this.handleError<any>("updateContent"))
     );
   }
@@ -74,10 +80,16 @@ export class PostsService {
   getPostId(id: number) {
     const url = `${this.baseUrl}${id}`;
 
-    return this.http.get<Content>(url).pipe(
-      tap(() => {
-        this._refreshNeeded$.next();
+    return this.http.get(url).pipe(
+      // tap(() => {
+      //   this._refreshNeeded$.next();
+      //   console.log(`fetched product id=${id}`);
+      // })
+      map(response => {
         console.log(`fetched product id=${id}`);
+        // console.log(response["content"]);
+
+        return response["content"];
       })
     );
   }

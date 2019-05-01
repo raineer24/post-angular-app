@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./product-detail.component.scss"]
 })
 export class ProductDetailComponent implements OnInit {
-  content: Content = { id: "", title: "", content: "" };
+  content: Content[] = [];
   isLoadingResults = true;
 
   constructor(
@@ -21,14 +21,14 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit() {
     console.log(this.route.snapshot.params["id"]);
     this.getContentDetail(this.route.snapshot.params["id"]);
+    this.getContentDetail(this.route.snapshot.params["id"]);
   }
 
   getContentDetail(id) {
-    this.postsService.getPostId(id).subscribe(data => {
-      this.content = data;
+    this.postsService.getPostId(id).subscribe((res: Content[]) => {
+      this.content = res;
+      //console.log(res["blogs"]);
       console.log(this.content);
-
-      this.isLoadingResults = false;
     });
   }
 

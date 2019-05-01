@@ -11,32 +11,32 @@
         class="form-control"
         [errorStateMatcher]="matcher"
       />
-      <mat-error>
+      <!-- <mat-error>
         <span
           *ngIf="
             !contentForm.get('title').valid && contentForm.get('title').touched
           "
           >Please enter Title</span
         >
-      </mat-error>
+      </mat-error> -->
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <input
         matInput
-        placeholder="content"
-        formControlName="content"
+        placeholder="describlogs"
+        formControlName="describlogs"
         class="form-control"
         [errorStateMatcher]="matcher"
       />
-      <mat-error>
+      <!-- <mat-error>
         <span
           *ngIf="
-            !contentForm.get('content').valid &&
-            contentForm.get('content').touched
+            !contentForm.get('describlogs').valid &&
+            contentForm.get('describlogs').touched
           "
           >Please enter content</span
         >
-      </mat-error>
+      </mat-error> -->
     </mat-form-field>
     <div class="button-row">
       <button>
@@ -45,3 +45,6 @@
     </div>
   </form>
 </div>
+<!-- <div *ngFor="let obj of content">
+  <p>{{ obj.title }}</p>
+</div> -->

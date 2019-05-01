@@ -20,7 +20,7 @@ export class ProductEditComponent implements OnInit {
   contentForm: FormGroup;
   id: string = "";
   title: string = "";
-  content: string = "";
+  describlogs: string = "";
 
   constructor(
     private router: Router,
@@ -32,14 +32,24 @@ export class ProductEditComponent implements OnInit {
   ngOnInit() {
     this.getContent(this.route.snapshot.params["id"]);
     this.initForm();
+    console.log(this.contentForm.value);
+    console.log(this.route.snapshot.params["id"]);
+    console.log(this.route.snapshot.params);
   }
 
   getContent(id) {
-    this.postsService.getPostId(id).subscribe(data => {
-      this.id = data.id;
+    this.postsService.getPostId(id).subscribe((data: Content[]) => {
+      console.log(data[0]);
+      console.log(data);
+
+      this.id = data[0].id;
+      console.log(this.id);
+
+      console.log(this.contentForm.value);
+
       this.contentForm.setValue({
-        title: data.title,
-        content: data.content
+        title: data[0].title,
+        describlogs: data[0].describlogs
       });
     });
   }
@@ -54,14 +64,16 @@ export class ProductEditComponent implements OnInit {
   initForm() {
     this.contentForm = this.fb.group({
       title: [null, Validators.required],
-      content: [null, Validators.required]
+      describlogs: [null, Validators.required]
     });
   }
 
   onSubmit(form: NgForm) {
     this.postsService.updateContent(this.id, form).subscribe(
       res => {
+        console.log(res);
         let id = res["id"];
+
         this.router.navigate(["/admin/product-detail", id]);
       },
       err => {

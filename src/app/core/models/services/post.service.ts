@@ -68,10 +68,12 @@ export class PostsService {
     return this.http.put(url, content).pipe(
       // tap(_ => console.log(`updated content id =${id}`)),
       map(response => {
+        console.log(response);
+
         console.log(`fetched product id=${id}`);
         console.log(response["content"]);
 
-        return response["content"];
+        return response["props"];
       }),
       catchError(this.handleError<any>("updateContent"))
     );

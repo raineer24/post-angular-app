@@ -32,20 +32,11 @@ export class ProductEditComponent implements OnInit {
   ngOnInit() {
     this.getContent(this.route.snapshot.params["id"]);
     this.initForm();
-    console.log(this.contentForm.value);
-    console.log(this.route.snapshot.params["id"]);
-    console.log(this.route.snapshot.params);
   }
 
   getContent(id) {
     this.postsService.getPostId(id).subscribe((data: Content[]) => {
-      console.log(data[0]);
-      console.log(data);
-
       this.id = data[0].id;
-      console.log(this.id);
-
-      console.log(this.contentForm.value);
 
       this.contentForm.setValue({
         title: data[0].title,
@@ -70,10 +61,11 @@ export class ProductEditComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     this.postsService.updateContent(this.id, form).subscribe(
-      res => {
+      (res: Content[]) => {
         console.log(res);
-        let id = res["id"];
 
+        let id = this.id;
+        console.log(this.id);
         this.router.navigate(["/admin/product-detail", id]);
       },
       err => {

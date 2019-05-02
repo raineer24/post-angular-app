@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { PostsService } from "../../../../core/models/services/post.service";
 import {
   FormControl,
@@ -18,30 +18,32 @@ import { Content } from "../../../../core/models/content";
 })
 export class ProductAddComponent implements OnInit {
   isLoadingResults = true;
-
+  returnUrl: string;
   contentForm: FormGroup;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private postsService: PostsService,
     private fb: FormBuilder
   ) {}
 
   ngOnInit() {
+    console.log(this.route.snapshot.queryParams);
     this.initForm();
   }
 
   get title() {
     return this.contentForm.get("title");
   }
-  get content() {
-    return this.contentForm.get("content");
+  get describlogs() {
+    return this.contentForm.get("describlogs");
   }
 
   initForm() {
     this.contentForm = this.fb.group({
       title: ["", Validators.compose([Validators.required])],
-      content: [
+      describlogs: [
         "",
         Validators.compose([Validators.required, Validators.minLength(6)])
       ]
@@ -64,8 +66,9 @@ export class ProductAddComponent implements OnInit {
 
     this.postsService.addPost(this.contentForm.value).subscribe(posts => {
       console.log(`SAVED SUCCESSFULLY. ${JSON.stringify(posts)}`);
-      let id = posts["id"];
-      // this.router.navigate(["/admin/product-detail", id]);
+      let id = posts["content"][0].id;
+
+      this.router.navigate(["/admin/product-detail", id]);
       //this.postForm.reset();
     });
   }

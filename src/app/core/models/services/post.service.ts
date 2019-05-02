@@ -37,14 +37,17 @@ export class PostsService {
   //   return this.postsUpdated.asObservable();
   // }
 
-  addPost(content: Content): Observable<Content> {
+  addPost(content: Content): Observable<any> {
     // const post: Content = data;
     // this.posts.push(post);
     // this.postsUpdated.next([...this.posts]);
     const url = `${this.baseUrl}`;
-    return this.http.post<Content>(url, content).pipe(
-      tap(() => {
-        this._refreshNeeded$.next();
+    return this.http.post(url, content).pipe(
+      map(response => {
+        //console.log(response);
+        console.log(response);
+
+        return response;
       })
     );
   }

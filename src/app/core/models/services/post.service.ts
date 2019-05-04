@@ -53,13 +53,15 @@ export class PostsService {
   }
 
   removeContent(id: number) {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.baseUrl}${id}`;
     console.log(url);
 
     return this.http.delete(url).pipe(
-      tap(() => {
-        this._refreshNeeded$.next();
-        console.log(`deleted Product id=${id}`);
+      map(response => {
+        //console.log(response);
+        console.log(response);
+
+        return response;
       })
     );
   }

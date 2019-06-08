@@ -28,13 +28,37 @@
     <button mat-raised-button color="accent">Save post</button>
   </form>
 </mat-card>
-<input type="file" name="image" ng2FileSelect [uploader]="uploader" />
+<!-- <input type="file" name="image" ng2FileSelect [uploader]="uploader" /> -->
 
-<button
+<!-- <button
   type="button"
   class="btn btn-success btn-s"
   (click)="uploader.uploadAll()"
   [disabled]="!uploader.getNotUploadedItems().length"
 >
   Upload an Image
-</button>
+</button> -->
+
+<label class="image-upload-container btn btn-bwm">
+  <span>Select Image</span>
+  <input
+    #imageInput
+    type="file"
+    accept="image/*"
+    (change)="processFile(imageInput)"
+  />
+</label>
+
+<div *ngIf="selectedFile">
+  <div
+    class="img-preview"
+    [ngStyle]="{ 'background-image': 'url(' + selectedFile.src + ')' }"
+  ></div>
+
+  <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success">
+    Image Upload successfully
+  </div>
+  <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger">
+    Image Upload Failed!
+  </div>
+</div>

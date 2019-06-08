@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-
+import { FileSelectDirective } from "ng2-file-upload";
 import {
   MatInputModule,
   MatCardModule,
@@ -23,7 +23,8 @@ import { HttpClientModule } from "@angular/common/http";
     AppComponent,
     PostCreateComponent,
     HeaderComponent,
-    PostListComponent
+    PostListComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

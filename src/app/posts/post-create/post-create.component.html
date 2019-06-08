@@ -28,3 +28,13 @@
     <button mat-raised-button color="accent">Save post</button>
   </form>
 </mat-card>
+<input type="file" name="image" ng2FileSelect [uploader]="uploader" />
+
+<button
+  type="button"
+  class="btn btn-success btn-s"
+  (click)="uploader.uploadAll()"
+  [disabled]="!uploader.getNotUploadedItems().length"
+>
+  Upload an Image
+</button>
